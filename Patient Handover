@@ -1,0 +1,102 @@
+Private Sub UserForm6_Queryclose()
+Application.Visible = True
+UserForm6.Show vbModeless
+End Sub
+
+
+Private Sub Image1_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal Data As MSForms.DataObject, ByVal X As Single, ByVal Y As Single, ByVal DragState As MSForms.fmDragState, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
+
+End Sub
+
+Private Sub Label1_Click()
+lastrow = Application.WorksheetFunction.CountA(Sheets("patients").Range("A:A")) + 1
+'''''Validation
+'''''If Me.TextBox1 = "" Or Me.TextBox2 = "" Then MsgBox "Please Enter Doctors/Nurse Details"
+''''Exit Sub
+''''End If
+
+'''Add Data Destination
+Sheets("patients").Range("A" & lastrow).Value = Me.TextBox1.Value
+Sheets("patients").Range("B" & lastrow).Value = Me.TextBox2.Value
+Sheets("patients").Range("C" & lastrow).Value = Me.TextBox4.Value
+Sheets("patients").Range("D" & lastrow).Value = Me.TextBox3.Value
+Sheets("patients").Range("E" & lastrow).Value = Me.TextBox5.Value
+Sheets("patients").Range("F" & lastrow).Value = Me.TextBox8.Value
+Sheets("patients").Range("G" & lastrow).Value = Me.TextBox6.Value
+Sheets("patients").Range("H" & lastrow).Value = Me.TextBox9.Value
+Sheets("patients").Range("I" & lastrow).Value = Me.TextBox7.Value
+Sheets("patients").Range("J" & lastrow).Value = Me.TextBox10.Value
+Sheets("patients").Range("K" & lastrow).Value = Me.TextBox11.Value
+Sheets("patients").Range("L" & lastrow).Value = Me.TextBox12.Value
+Sheets("patients").Range("M" & lastrow).Value = Me.TextBox13.Value
+Sheets("patients").Range("N" & lastrow).Value = Me.TextBox14.Value
+Sheets("patients").Range("O" & lastrow).Value = Me.TextBox15.Value
+Sheets("patients").Range("P" & lastrow).Value = Me.TextBox16.Value
+Sheets("patients").Range("Q" & lastrow).Value = Me.TextBox17.Value
+Sheets("patients").Range("R" & lastrow).Value = Me.TextBox18.Value
+
+MsgBox "Information Saved Succesifully"
+
+On Error Resume Next
+
+MkDir "D:\Others\Daarusalaam\"
+
+If MsgBox("Do you want to print Receipt", vbYesNo) = vbYes Then
+Sheets("Summary").Range("D3:h24").ExportAsFixedFormat xlTypePDF, Filename:="D:\Others\Daarusalaam\" & Sheets("Summary").Range("G5").Value & " " & Sheets("Summary").Range("E5").Value, openafterpublish:=True
+Else
+Sheets("Summary").Range("D3:h24").ExportAsFixedFormat xlTypePDF, Filename:="D:\Others\Daarusalaam\" & Sheets("Summary").Range("G5").Value & " " & Sheets("Summary").Range("E5").Value, openafterpublish:=False
+
+End If
+
+Me.TextBox1.Value = ""
+Me.TextBox2.Value = ""
+Me.TextBox3.Value = ""
+Me.TextBox4.Value = ""
+Me.TextBox5.Value = ""
+Me.TextBox6.Value = ""
+Me.TextBox7.Value = ""
+Me.TextBox8.Value = ""
+Me.TextBox9.Value = ""
+Me.TextBox10.Value = ""
+Me.TextBox11.Value = ""
+Me.TextBox12.Value = ""
+Me.TextBox13.Value = ""
+Me.TextBox14.Value = ""
+Me.TextBox15.Value = ""
+Me.TextBox16.Value = ""
+Me.TextBox17.Value = ""
+Me.TextBox18.Value = ""
+
+
+End Sub
+
+Private Sub TextBox1_Change()
+Me.TextBox1.Value = Application.WorksheetFunction.Proper(Me.TextBox1)
+
+End Sub
+
+Private Sub TextBox7_Change()
+Me.TextBox7.Value = Application.WorksheetFunction.Proper(Me.TextBox7)
+
+End Sub
+Private Sub TextBox10_Change()
+Me.TextBox10.Value = Application.WorksheetFunction.Proper(Me.TextBox10)
+
+End Sub
+Private Sub TextBox9_Change()
+Me.TextBox9.Value = Application.WorksheetFunction.Proper(Me.TextBox9)
+
+End Sub
+Private Sub TextBox6_Change()
+Me.TextBox6.Value = Application.WorksheetFunction.Proper(Me.TextBox6)
+
+End Sub
+Private Sub UserForm6_initialize()
+Me.TextBox5.Value = Format(Date, today)
+
+End Sub
+
+Private Sub UserForm_Click()
+
+End Sub
+
